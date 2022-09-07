@@ -38,7 +38,7 @@ variable "AMI" {
 }
 
 resource "aws_iam_instance_profile" "rm_iam_profile" {
-  name = "rm_iam_profile_usecase_4"
+  name = "rm_iam_profile_usecase_6"
   role = "EC2JenkinsRole"
 }
 
@@ -49,7 +49,7 @@ variable "EC2_TYPE" {
 
 variable "S3_PATH" {
   type = string
-  default = "s3://rm-binaries/devops/app"
+  default = "s3://rm-binaries/devops/app/usecase1"
   description = "S3 Path of an deployed image"
 }
 
@@ -143,7 +143,7 @@ resource "aws_instance" "app_server" {
                   sudo su -
                   sudo yum -y install pip
                   aws s3 cp "${var.S3_PATH}" . --recursive
-				  ls -lrt
+		  ls -lrt
                   mkdir myproject
                   pip install *.whl
                   pip install *.whl -t /root/myproject
